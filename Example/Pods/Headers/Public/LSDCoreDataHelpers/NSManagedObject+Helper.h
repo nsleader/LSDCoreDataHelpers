@@ -1,0 +1,1 @@
+../../../../../Pod/Classes/Categories/NSManagedObject+Helper.h

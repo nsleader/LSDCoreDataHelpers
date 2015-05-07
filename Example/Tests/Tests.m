@@ -7,8 +7,21 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <LSDCoreDataHelpers/LSDCoreDataStack.h>
+#import <LSDCoreDataHelpers/NSManagedObject+Helper.h>
+#import "TestEntity.h"
+
+
+@protocol LSDCoreDataStackProtocolTests <LSDCoreDataStackProtocol>
+
+- (NSString *)modelName;
+
+@end
+
 
 @interface Tests : XCTestCase
+
+@property (nonatomic) id<LSDCoreDataStackProtocolTests> coreDataStak;
 
 @end
 
@@ -17,18 +30,34 @@
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    self.coreDataStak = (id<LSDCoreDataStackProtocolTests>)[LSDCoreDataStack new];
+    [self.coreDataStak setupWithModelName:@"TestModel"];
 }
 
-- (void)tearDown
+- (void)testCoreDataStack
 {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
+    XCTAssertNotNil([_coreDataStak mainCtx]);
+    XCTAssertNotNil([_coreDataStak backgroundCtx]);
 }
 
-- (void)testExample
+- (void)testContextType
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertEqual([_coreDataStak mainCtx].concurrencyType, NSMainQueueConcurrencyType);
+    XCTAssertEqual([_coreDataStak backgroundCtx].concurrencyType, NSPrivateQueueConcurrencyType);
+}
+
+- (void)testModelName
+{
+    XCTAssertEqualObjects([_coreDataStak modelName], @"TestModel");
+}
+
+- (void)testManagedObject
+{
+    TestEntity *mo = [TestEntity createInContext:[_coreDataStak mainCtx]];
+    XCTAssertNotNil(mo);
+    XCTAssert([mo isMemberOfClass:[TestEntity class]]);
+    XCTAssert([mo isKindOfClass:[NSManagedObject class]]);
+    XCTAssertEqualObjects(mo.managedObjectContext, [_coreDataStak mainCtx]);
 }
 
 @end

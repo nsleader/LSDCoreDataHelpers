@@ -1,0 +1,14 @@
+PODS:
+  - LSDCoreDataHelpers (0.1.0)
+
+DEPENDENCIES:
+  - LSDCoreDataHelpers (from `../`)
+
+EXTERNAL SOURCES:
+  LSDCoreDataHelpers:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  LSDCoreDataHelpers: 4b50d920b115d53a5e09923c74705970d8f689a8
+
+COCOAPODS: 0.37.1
