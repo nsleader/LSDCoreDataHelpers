@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "LSDCoreDataHelpers"
-  s.version          = "0.1.0"
+  s.version          = "0.1.1"
   s.summary          = "LSDCoreDataHelpers."
 #  s.description      = <<-DESC
 #                       An optional longer description of LSDCoreDataHelpers

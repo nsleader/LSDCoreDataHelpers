@@ -30,4 +30,6 @@
  */
 - (NSManagedObjectContext *)backgroundCtx;
 
+- (void)info;
+
 @end

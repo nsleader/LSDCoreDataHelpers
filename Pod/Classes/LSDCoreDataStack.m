@@ -76,7 +76,19 @@ static NSString * const kDefaultStoreFileName = @"CoreData";
     return _backgroundManagedObjectContext;
 }
 
+- (void)info
+{
+    NSLog(@"\n\
+----------------\n\
+Model name: %@\n\
+Store URL: %@\n\
+----------------",
+          _modelName,
+          [[self persistentStoreURL] absoluteString]);
+}
+
 #pragma mark - Helpers
+
 
 + (NSString *)defaultStoreName;
 {

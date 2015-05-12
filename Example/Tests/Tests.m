@@ -32,6 +32,7 @@
     [super setUp];
     self.coreDataStak = (id<LSDCoreDataStackProtocolTests>)[LSDCoreDataStack new];
     [self.coreDataStak setupWithModelName:@"TestModel"];
+    [self.coreDataStak info];
 }
 
 - (void)testCoreDataStack
